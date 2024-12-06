@@ -265,29 +265,46 @@ curl -X GET http://localhost:8080/listImages | json_pp
 git clone https://github.com/mrsnor/<project-name>.git
 ```
 
-
-**2. Run the app using maven**
-
-```bash
-cd imageserver
-mvn spring-boot:run
-```
-
-
-**3. Run the PostgreSQL database with Docker**
+**2. Run the PostgreSQL database with Docker**
 
 ```bash
 docker run --name m-postgres -p 5432:5432 -e POSTGRES_PASSWORD=ekoloji -d postgres:15-alpine
 ```
 
-That's it! The application can be accessed at `http://localhost:8080`.
+Note -
 
-You can also send some requests to `http://localhost:8080`. 
+Once you've created the container for database, 
+
+Use this to start the container
+
+```bash
+docker start m-postgres
+```
+
+And use this to stop the container
+
+```bash
+docker stop m-postgres
+```
+
+**3. Run the app using maven**
+
+```bash
+cd spring-postgres-image-storage
+
+mvnw clean install
+
+mvnw spring-boot:run
+```
+
+
+
+That's it! The application can be accessed at `http://localhost:8080`.
 
 You may also package the application in the form of a jar and then run the jar file like so -
 
 ```bash
-mvn clean package
+mvnw clean package
 java -jar target/imageserver-0.0.1-SNAPSHOT.jar
 ```
 
@@ -299,9 +316,9 @@ java -jar target/imageserver-0.0.1-SNAPSHOT.jar
 ```bash
 git clone https://github.com/mrsnor/<project-name>.git
 
-cd imageserver
+cd spring-postgres-image-storage
 
-mvn clean install
+mvnw clean install
 ```
 
 DockerFile detail.
